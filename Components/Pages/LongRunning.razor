@@ -1,0 +1,22 @@
+@* @attribute [StreamRendering(false)] *@
+
+<h3>LongRunning</h3>
+
+@if (IsTaskCompleted)
+{
+    <p>Task is running</p>
+}
+else
+{
+    <p>Task is completed</p>
+}
+
+@code {
+    private bool IsTaskCompleted { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(3));
+        IsTaskCompleted = true;
+    }
+}
